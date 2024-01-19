@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FlatList, View,  Text } from 'react-native';
+import { FlatList, View, Text, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { GET_POKEMONS_REQUEST } from '../../redux/actions';
 
@@ -19,13 +19,21 @@ const PokemonsList = (props) => {
   if (error) {
     return <Text>Error: {error.message}</Text>;
   }
+const renderItem = ({ item, index }) => {
+  // Construct the image URL using the Pokémon index (+1 as the API starts at index 1).
+  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`;
 
-  const renderItem = ({ item }) => (
-    <View>
-
-      <Text>{item.name}</Text>
+  return (
+    <View style={styles.itemContainer}>
+      <Image
+        style={styles.pokemonImage}
+        source={{ uri: imageUrl }}
+      />
+      <Text style={styles.pokemonName}>{item.name}</Text>
     </View>
   );
+};
+
   console.log(pokemons, "pokemons")
 
   return (
@@ -54,3 +62,23 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonsList);
+
+const styles = StyleSheet.create({
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  pokemonName: {
+    fontSize: 20, 
+    fontweight: 600,
+    textTransform: 'capitalize', 
+  },
+  pokemonImage: {
+    width: 75, 
+    height: 75, 
+    marginRight: 15,
+  },
+});

@@ -5,7 +5,7 @@ import { GET_POKEMONS_REQUEST, GET_POKEMONS_SUCCESS, GET_POKEMONS_FAILURE } from
 function* getPokemonsSaga() {
   try {
     const response = yield call(getPokemons);
-    yield put({ type: GET_POKEMONS_SUCCESS, payload: response.data.results });
+    yield put({ type: GET_POKEMONS_SUCCESS, payload: response});
   } catch (error) {
     yield put({ type: GET_POKEMONS_FAILURE, error });
   }

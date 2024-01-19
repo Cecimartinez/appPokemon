@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
   },
   pokemonName: {
     fontSize: 20, 
-    fontweight: 600,
     textTransform: 'capitalize', 
   },
   pokemonImage: {

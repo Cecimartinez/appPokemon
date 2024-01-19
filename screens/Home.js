@@ -1,46 +1,59 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import RemoveButton from '../components/Home/RemoveButton';
 
-const Home= () => {
-
- return (
+const Home = () => {
+  return (
   <View style={styles.container}>
-    <Text style={styles.welcomeText}>Welcome to the Pokemon App</Text>
-   
-  </View>
- );
-};
+    <Text style={styles.welcomeText}>Welcome to the App</Text>
+    
+    <Image
+    source={require('../img/pokemonLogo.png')}
+    style={styles.logoImage}
+/>
 
-const styles = StyleSheet.create({
- container: {
+    <RemoveButton
+      onPress={() => {
+          console.log('remove button clicked');
+      }}
+    />
+  </View>
+  );
+ };
+
+
+ const styles = StyleSheet.create({
+  container: {
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#f5f5f5',
- },
- welcomeText: {
-  fontSize: 22,
+  },
+  welcomeText: {
+  fontSize: 35,
   textAlign: 'center',
   color: '#333',
-  marginBottom: 20,
- },
- image: {
-  width: 200,
-  height: 200,
-  marginTop: 50,
- },
- button: {
+  marginBottom: 40,
+  fontWeight: 'bold',
+  },
+  logoImage: {
+  width: 250,
+  height: 250,
+  resizeMode: 'contain',
+  marginTop: 20,
+  },
+  removeButton: {
   backgroundColor: '#007AFF',
   borderRadius: 25, 
   padding: 11, 
   paddingHorizontal: 20, 
   marginTop: 50,
- },
- buttonText: {
+  },
+  removeButtonText: {
   color: 'white',
   textAlign: 'center',
   fontSize: 16,
- },
-});
-
+  },
+ });
+ 
 export default Home;

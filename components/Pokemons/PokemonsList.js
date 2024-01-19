@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
-import { FlatList, View, Text, Image, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { GET_POKEMONS_REQUEST } from '../../redux/actions';
+import PokemonDetailModal from './PokemonDetailModal';
 
 const PokemonsList = (props) => {
+
+ const [modalVisible, setModalVisible] = useState(false);
+ const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+
+
   useEffect(() => {
     props.getPokemonsRequest();
   }, []);
@@ -24,24 +31,36 @@ const renderItem = ({ item, index }) => {
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`;
 
   return (
-    <View style={styles.itemContainer}>
-      <Image
-        style={styles.pokemonImage}
-        source={{ uri: imageUrl }}
-      />
-      <Text style={styles.pokemonName}>{item.name}</Text>
-    </View>
+    <TouchableOpacity onPress={() => {
+      setSelectedPokemon(item);
+      setModalVisible(true);
+    }}>
+      <View style={styles.itemContainer}>
+        <Image
+          style={styles.pokemonImage}
+          source={{ uri: imageUrl }}
+        />
+        <Text style={styles.pokemonName}>{item.name}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
   console.log(pokemons, "pokemons")
 
   return (
-    <FlatList
-      data={pokemons}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.name}
-    />
+    <>
+     <FlatList
+       data={pokemons}
+       renderItem={renderItem}
+       keyExtractor={(item) => item.name}
+     />
+     <PokemonDetailModal
+       visible={modalVisible}
+       pokemon={selectedPokemon}
+       onClose={() => setModalVisible(false)}
+     />
+   </>
   );
 };
 

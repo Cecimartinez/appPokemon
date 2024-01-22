@@ -1,4 +1,7 @@
 {
   "name": "appPokemon",
-  "displayName": "appPokemon"
+  "displayName": "appPokemon",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4209556911281829~2430667696"
+  }
 }

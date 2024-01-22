@@ -1,10 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import RemoveButton from '../components/Home/RemoveButton';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 const Home = () => {
+
+  const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER 
+  : 'ca-app-pub-4209556911281829/6653021725';
+
   return (
   <View style={styles.container}>
+  <BannerAd
+      unitId={adUnitId}
+      size={BannerAdSize.BANNER}/>
+
     <Text style={styles.welcomeText}>Welcome to the App</Text>
     
     <Image
@@ -17,7 +26,9 @@ const Home = () => {
           console.log('remove button clicked');
       }}
     />
+      
   </View>
+  
   );
  };
 
@@ -27,7 +38,7 @@ const Home = () => {
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: '#f5f5f5',
+  backgroundColor: '#f5f5f5'
   },
   welcomeText: {
   fontSize: 35,
@@ -35,6 +46,7 @@ const Home = () => {
   color: '#333',
   marginBottom: 40,
   fontWeight: 'bold',
+  marginTop: 25,
   },
   logoImage: {
   width: 250,
@@ -53,7 +65,8 @@ const Home = () => {
   color: 'white',
   textAlign: 'center',
   fontSize: 16,
-  },
+  }
  });
  
 export default Home;
+ 

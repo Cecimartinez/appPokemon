@@ -12,7 +12,6 @@ const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
 });
 
 const PokemonsList = (props) => {
- const [loaded, setLoaded] = useState(false);
  const [modalVisible, setModalVisible] = useState(false);
  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
@@ -20,7 +19,7 @@ const PokemonsList = (props) => {
     props.getPokemonsRequest();
 
     const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-      setLoaded(true);
+      interstitial.show();
     });
 
     interstitial.load();
@@ -42,15 +41,9 @@ const PokemonsList = (props) => {
     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`;
 
     return (
-      <TouchableOpacity onPress={async () => {
+      <TouchableOpacity onPress={() => {
         setSelectedPokemon(item);
         setModalVisible(true);
-        if (loaded) {
-          await interstitial.show();
-          interstitial.load();
-        } else {
-    await interstitial.show();
- }
       }}>
         <View style={styles.itemContainer}>
           <Image

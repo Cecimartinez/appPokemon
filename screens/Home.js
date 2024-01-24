@@ -1,36 +1,25 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import RemoveButton from '../components/Home/RemoveButton';
-import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+import AdBanner from '../components/Ads/AdBanner';
 
 const Home = () => {
-
-  const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER 
-  : 'ca-app-pub-4209556911281829/6653021725';
-
-  return (
-  <View style={styles.container}>
-  <BannerAd
-      unitId={adUnitId}
-      size={BannerAdSize.BANNER}/>
-
-    <Text style={styles.welcomeText}>Welcome to the App</Text>
-    
-    <Image
-    source={require('../img/pokemonLogo.png')}
-    style={styles.logoImage}
-/>
-
-    <RemoveButton
-      onPress={() => {
+ return (
+    <View style={styles.container}>
+      <AdBanner />
+      <Text style={styles.welcomeText}>Welcome to the App</Text>
+      <Image
+        source={require('../img/pokemonLogo.png')}
+        style={styles.logoImage}
+      />
+      <RemoveButton
+        onPress={() => {
           console.log('remove button clicked');
-      }}
-    />
-      
-  </View>
-  
-  );
- };
+        }}
+      />
+    </View>
+ );
+};
 
 
  const styles = StyleSheet.create({

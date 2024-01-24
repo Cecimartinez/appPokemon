@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "784920795315",
+    "project_id": "apppokemon-ada41",
+    "storage_bucket": "apppokemon-ada41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784920795315:android:f1172b5f631238a9cef8c6",
+        "android_client_info": {
+          "package_name": "com.app.pokemon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-gGWclI5CANKk_bG-zEpsXBC-VxsJPio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      },
+      "admob_app_id": "ca-app-pub-4209556911281829~2430667696"
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,7 +12,10 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme">
 
-  
+      <meta-data
+            android:name="com.google.android.gms.ads.ca-app-pub-4209556911281829~2430667696"
+            android:value="ca-app-pub-4209556911281829~2430667696"/>
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

@@ -1,5 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, Image, Text, StyleSheet } from 'react-native';
+import NativeAdView from "react-native-admob-native-ads";
+import AdBanner from '../Ads/AdBanner';
 
 const PokemonListItem = ({ item, index, onSelect }) => {
  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`;
@@ -13,7 +15,7 @@ const PokemonListItem = ({ item, index, onSelect }) => {
     </TouchableOpacity>
  );
 };
-
+ 
 const styles = StyleSheet.create({
  itemContainer: {
     flexDirection: 'row',

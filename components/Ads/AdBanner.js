@@ -16,7 +16,7 @@ const AdBanner = () => {
  return (
     <BannerAd
       unitId={adUnitId}
-      size={BannerAdSize.BANNER}
+      size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
       ref={adRef}
     />
  );

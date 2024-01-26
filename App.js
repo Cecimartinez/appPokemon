@@ -12,6 +12,8 @@ import TabBar from './navigators/TabBar';
 import { NavigationContainer } from '@react-navigation/native';
 import store from './redux/store';
 import mobileAds from 'react-native-google-mobile-ads';
+import AdManager from "react-native-admob-native-ads";
+
 
 const App = () => {
  useEffect(() => {

@@ -2,11 +2,16 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import RemoveButton from '../components/Home/RemoveButton';
 import AdBanner from '../components/Ads/AdBanner';
+import NativeAdView from "react-native-admob-native-ads";
 
 const Home = () => {
  return (
+
     <View style={styles.container}>
+      <NativeAdView adUnitID="ca-app-pub-4209556911281829/3319215719">
       <AdBanner />
+      </NativeAdView>
+
       <Text style={styles.welcomeText}>Welcome to the App</Text>
       <Image
         source={require('../img/pokemonLogo.png')}
@@ -17,7 +22,9 @@ const Home = () => {
           console.log('remove button clicked');
         }}
       />
+
     </View>
+
  );
 };
 

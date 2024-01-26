@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { GET_POKEMONS_REQUEST } from '../../redux/actions';
 import PokemonDetailModal from './PokemonDetailModal';
 import PokemonListItem from './PokemonsListItem';
 import AdInterstitial from '../Ads/AdInterstitial';
 import usePokemonSelection from '../../hooks/usePokemonSelection';
+import AdNativeViewBase from '../Ads/AdNativeViewBase';
+import AdBanner from '../Ads/AdBanner';
+import { Loading } from '../../uilib/player/Loading';
 
 const PokemonList = ({ pokemonList, renderItem }) => {
  return (
@@ -13,7 +16,7 @@ const PokemonList = ({ pokemonList, renderItem }) => {
       data={pokemonList}
       renderItem={renderItem}
       keyExtractor={(item) => item.name}
-    />
+    /> 
  );
 };
 
@@ -21,7 +24,7 @@ const ErrorDisplay = ({ error }) => {
  if (!error) return null;
 
  return <Text>Error: {error.message}</Text>;
-};
+};  
 
 const PokemonsList = (props) => {
  const { modalVisible, selectedPokemon, selectPokemon, setModalVisible } = usePokemonSelection();
@@ -32,12 +35,26 @@ const PokemonsList = (props) => {
 
  const { pokemonList, loading, error } = props;
 
- const renderItem = ({ item, index }) => {
+const renderItem = ({ item, index }) => {
+  if ((index + 1) % 5 === 0) {
+   const adUnitID = "ca-app-pub-3940256099942544/2247696110"; // ID de anuncio de prueba
+   return (
+      <View>
+        <AdNativeViewBase >
+        <AdBanner/>
+          <PokemonListItem item={item} index={index} onSelect={selectPokemon} />
+        </AdNativeViewBase>
+      </View>
+    );
+  } else {
     return <PokemonListItem item={item} index={index} onSelect={selectPokemon} />;
- };
+  }
+};
+
+  
 
  if (loading) {
-    return <Text>Loading...</Text>;
+    return <Loading/>
  }
 
  return (

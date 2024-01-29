@@ -1,25 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+'use strict';
+import React from 'react';
+import AdManager from './AdManager';
+import {BannerAd} from 'react-native-google-mobile-ads';
 
-const AdBanner = () => {
- const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER 
- : 'ca-app-pub-4209556911281829/6653021725';
-
- const adRef = useRef(null);
-
- useEffect(() => {
-    if (adRef.current) {
-      adRef.current.loadAd();
-    }
- }, []);
-
- return (
-    <BannerAd
-      unitId={adUnitId}
-      size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-      ref={adRef}
-    />
- );
+const AdBanner = ({route}) => {
+  if (AdManager.mustShowAds()) {
+    return (
+      <BannerAd
+        size={AdManager.getBannerSize()}
+        unitId={AdManager.getBannerId()}
+      />
+    );
+  } else {
+    return null;
+  }
 };
 
 export default AdBanner;

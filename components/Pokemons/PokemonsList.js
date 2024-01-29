@@ -9,6 +9,7 @@ import usePokemonSelection from '../../hooks/usePokemonSelection';
 import AdNativeViewBase from '../Ads/AdNativeViewBase';
 import AdBanner from '../Ads/AdBanner';
 import { Loading } from '../../uilib/player/Loading';
+import ListItemVerticalAd from '../Ads/ListItemVerticalAd';
 
 const PokemonList = ({ pokemonList, renderItem }) => {
  return (
@@ -36,19 +37,14 @@ const PokemonsList = (props) => {
  const { pokemonList, loading, error } = props;
 
 const renderItem = ({ item, index }) => {
-  if ((index + 1) % 5 === 0) {
-   const adUnitID = "ca-app-pub-3940256099942544/2247696110"; // ID de anuncio de prueba
+  // if ((index + 1) % 5 === 0) {
+  //  const adUnitID = "ca-app-pub-3940256099942544/2247696110"; // ID de anuncio de prueba
    return (
-      <View>
-        <AdNativeViewBase >
-        <AdBanner/>
-          <PokemonListItem item={item} index={index} onSelect={selectPokemon} />
-        </AdNativeViewBase>
-      </View>
+      <PokemonListItem item={item} index={index} onSelect={selectPokemon} />
     );
-  } else {
-    return <PokemonListItem item={item} index={index} onSelect={selectPokemon} />;
-  }
+  // } else {
+  //   return <PokemonListItem item={item} index={index} onSelect={selectPokemon} />;
+  // }
 };
 
   
@@ -56,10 +52,12 @@ const renderItem = ({ item, index }) => {
  if (loading) {
     return <Loading/>
  }
+  const AD_REPO = 'native_popular_shows';
 
  return (
     <>
       <AdInterstitial />
+      <ListItemVerticalAd repository={AD_REPO} />
       <PokemonList pokemonList={pokemonList} renderItem={renderItem} />
       <ErrorDisplay error={error} />
       <PokemonDetailModal

@@ -8,9 +8,9 @@ const Home = () => {
  return (
 
     <View style={styles.container}>
-      <NativeAdView adUnitID="ca-app-pub-4209556911281829/3319215719">
+      {/* <NativeAdView adUnitID="ca-app-pub-4209556911281829/3319215719">
       <AdBanner />
-      </NativeAdView>
+      </NativeAdView> */}
 
       <Text style={styles.welcomeText}>Welcome to the App</Text>
       <Image
